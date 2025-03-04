@@ -24,14 +24,14 @@ final_gw = 21
 locked = []
 banned = [418]
 gd_banned = []
-gds_to_zero = ["Gameweek 20 - Day 2"]
+gds_to_zero = ["Gameweek 25 - Day 6"]
 ids_to_zero = []
 
 # Chip Settings
 wildcard = False
 allstar = False
 day_solve = False
-allstar_day = "Gameweek 20 - Day 2"
+allstar_day = "Gameweek 25 - Day 6"
 
 # Solver Settings
 max_time = 300

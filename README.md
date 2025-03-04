@@ -70,7 +70,7 @@ allstar: Use allstar (True or False)
 
 day_solve: Choose to solve just the allstar day (True) or a normal solve ignoring that day (False)
 
-allstar_day: The gameday that allstar chip is used on i.e. "Gameweek 20 - Day 1"
+allstar_day: The gameday that allstar chip is used on i.e. "Gameweek 25 - Day 6"
 
 ### Solver Settings
 
