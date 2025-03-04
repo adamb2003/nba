@@ -54,7 +54,7 @@ id,name,now_cost,team,element_type,status
 57,Ricky Rubio,60,3,1,u
 58,Isaac Okoro,74,3,1,a
 59,Dean Wade,55,3,2,a
-61,Donovan Mitchell,160,3,1,i
+61,Donovan Mitchell,160,3,1,a
 62,Sharife Cooper,45,3,1,u
 63,Ty Jerome,56,3,1,a
 64,Damian Jones,50,3,2,u
@@ -130,7 +130,7 @@ id,name,now_cost,team,element_type,status
 620,Javon Freeman-Liberty,45,5,1,u
 128,Naji Marshall,58,6,2,a
 130,Dwight Powell,53,6,2,a
-132,Jaden Hardy,53,6,1,a
+132,Jaden Hardy,53,6,1,i
 134,Kyrie Irving,155,6,1,d
 136,Dante Exum,55,6,1,a
 137,Dereck Lively II,94,6,2,i
@@ -186,7 +186,7 @@ id,name,now_cost,team,element_type,status
 183,Jaylin Williams,45,7,2,u
 576,Charles Bediako,45,7,2,u
 816,Will Richardson,45,7,1,u
-185,Stephen Curry,159,8,1,a
+185,Stephen Curry,159,8,1,d
 187,Draymond Green,114,8,2,a
 188,Jonathan Kuminga,99,8,2,i
 189,Kevon Looney,54,8,2,a
@@ -241,7 +241,7 @@ id,name,now_cost,team,element_type,status
 621,Markquis Nowell,45,9,1,u
 810,Thon Maker,45,9,2,u
 3,Bogdan Bogdanovic,110,10,1,a
-12,Seth Lundy,45,10,1,i
+12,Seth Lundy,45,10,1,d
 166,Braxton Key,45,10,2,u
 239,Derrick Jones Jr.,70,10,2,i
 241,Kawhi Leonard,150,10,2,a
@@ -558,7 +558,7 @@ id,name,now_cost,team,element_type,status
 531,Filip Petrusev,45,22,2,u
 532,JaVale McGee,50,22,2,u
 533,Domantas Sabonis,168,22,2,i
-535,Malik Monk,104,22,1,d
+535,Malik Monk,104,22,1,a
 536,Trey Lyles,53,22,2,a
 537,Keegan Murray,109,22,2,a
 540,Keon Ellis,53,22,1,a
@@ -604,7 +604,7 @@ id,name,now_cost,team,element_type,status
 783,Nathan Mensah,45,23,2,u
 823,Isaiah Miller,45,23,1,u
 95,Daniel Theis,58,24,2,u
-584,Alex Caruso,99,24,1,a
+584,Alex Caruso,99,24,1,d
 585,Isaiah Hartenstein,103,24,2,a
 586,Olivier Sarr,45,24,2,u
 587,Isaiah Joe,54,24,1,i
@@ -661,7 +661,7 @@ id,name,now_cost,team,element_type,status
 637,Ja'Kobe Walter,54,25,1,a
 638,Jared Rhoden,49,25,1,u
 715,Eugene Omoruyi,50,25,2,u
-44,Jaden Springer,49,26,1,a
+44,Jaden Springer,49,26,1,d
 111,Justin Lewis,45,26,2,u
 257,Mo Bamba,55,26,2,u
 263,Elijah Harkless,45,26,1,a

@@ -8,7 +8,7 @@ import time
 from solver import nba_solver
 
 # EV Settings
-decay = 0.99
+decay = 0.85
 home = 1.02
 away = 0.98
 value_cutoff = 0.25
@@ -24,7 +24,7 @@ final_gw = 21
 locked = []
 banned = [418]
 gd_banned = []
-gds_to_zero = ["Gameweek 25 - Day 6"]
+gds_to_zero = []
 ids_to_zero = []
 
 # Chip Settings
@@ -36,7 +36,7 @@ allstar_day = "Gameweek 25 - Day 6"
 # Solver Settings
 max_time = 300
 gap = 0.0
-info_source = "" #"API"
+info_source = "API" #""
 
 
 def main(
@@ -391,7 +391,8 @@ def apply_decay(player_data, decay_factor):
             if col_name in player_data.columns:
                 player_data[col_name] *= decay
                 player_data[col_name] = round(player_data[col_name], 2)
-                decay *= decay_factor
+                #decay *= decay_factor
+        decay *= decay_factor
     return player_data
 
 

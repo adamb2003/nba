@@ -80,7 +80,8 @@ def nba_solver(
         decay_dict[week] = {}
         for day in days:
             decay_dict[week][day] = decay_factor**cumulative_index
-            cumulative_index += 1
+            #cumulative_index += 1
+        cumulative_index += 1
 
     base_penalty = transfer_penalty
 
