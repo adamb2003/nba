@@ -18,11 +18,11 @@ transfer_penalty = {1: 18, 2: 12, 3: 6, 4: 6, 5: 0, 6: 0, 7: 0}
 first_gd = 2
 first_gw = 20
 final_gd = 7
-final_gw = 21
+final_gw = 22
 
 # Player Settings
 locked = []
-banned = [418]
+banned = [418, 340, 771, 376]
 gd_banned = []
 gds_to_zero = []
 ids_to_zero = []
@@ -36,7 +36,7 @@ allstar_day = "Gameweek 25 - Day 6"
 # Solver Settings
 max_time = 300
 gap = 0.0
-info_source = "API" #""
+info_source = "" #"API"
 
 
 def main(
