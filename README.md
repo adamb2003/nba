@@ -1,4 +1,4 @@
-# FantasyNBA
+# NBA Fantasy
 
 EV Generator and Squad Solver for Fantasy NBA (Salary Cap Edition)
 
@@ -16,11 +16,11 @@ You must be logged in, and you can find your ID in the url if you navigate to yo
 
 ### HiGHS
 
-This solver uses HiGHS, make sure you have it downloaded and included in Path.
+This solver uses HiGHS, make sure you have it downloaded and included in your environment path.
 
 ### Running the Code
 
-After you've done this navigate to the code folder and run run*solve.py and it \_should* all work.
+After you've done this, navigate to the code folder and run _run_solve.py_ and it should work.
 
 EV and Solve will be found in the output folder following successful run.
 
