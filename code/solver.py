@@ -27,7 +27,7 @@ def nba_solver(
     money = team_value + in_bank
     print(f"Money: {money}")
 
-    # remove banned players
+    # Remove banned players
     data = data[~data["id"].isin(banned)]
 
     data = data.set_index("id")
@@ -35,7 +35,7 @@ def nba_solver(
     player_ids = data.index
     point_columns = data.columns[11:]
 
-    # create dictionary of gameweeks + game days
+    # Create dictionary of gameweeks + game days
     week_day_list = []
     week_day_dict = {}
     for col in point_columns:
@@ -57,21 +57,21 @@ def nba_solver(
 
     in_team_flag = {id: 1 if id in in_team else 0 for id in player_ids}
 
-    # create columns for team and position
+    # Create columns for team and position
     positions = pd.get_dummies(data, columns=["element_type"], prefix="pos")[
         ["pos_1", "pos_2"]
     ].astype(int)
     teams = pd.get_dummies(data, columns=["team"], prefix="team")
     teams = teams.loc[:, teams.columns.str.startswith("team_")].astype(int)
 
-    # create dictionaries
+    # Create dictionaries
     points = {i: {j: {} for j in week_day_dict[i]} for i in week_day_dict.keys()}
     squad_var = {i: {j: {} for j in week_day_dict[i]} for i in week_day_dict.keys()}
     team_var = {i: {j: {} for j in week_day_dict[i]} for i in week_day_dict.keys()}
     cap_var = {i: {j: {} for j in week_day_dict[i]} for i in week_day_dict.keys()}
     transfer_var = {i: {j: {} for j in week_day_dict[i]} for i in week_day_dict.keys()}
 
-    # apply decay to transfer penalties
+    # Apply decay to transfer penalties
     decay_factor = decay
     cumulative_index = 0
 
@@ -383,7 +383,7 @@ def nba_solver(
         team_summary[day_str] = day_team_df["display_name"].tolist()
         bench_summary[day_str] = day_bench_df["display_name"].tolist()
 
-    # current gws
+    # Current gws
     first_gw_day = f"{current_week}_{current_day}"
     first_squad_col = f"squad_{first_gw_day}"
 
@@ -429,7 +429,7 @@ def nba_solver(
     print(f"Cumulative xPts: {day_xPts:.2f}")
     print()
 
-    # future gws
+    # Future gws
     squad_day_cols = [col for col in combined_df.columns if col.startswith("squad_")]
     squad_day_cols.sort()
 
