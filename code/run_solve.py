@@ -8,24 +8,24 @@ import time
 from solver import nba_solver
 
 # EV Settings
-decay = 0.85
+decay = 0.90
 home = 1.02
 away = 0.98
 value_cutoff = 0.25
 transfer_penalty = {1: 18, 2: 12, 3: 6, 4: 6, 5: 0, 6: 0, 7: 0}
 
 # Gameday Range
-first_gd = 2
-first_gw = 21
+first_gd = 1
+first_gw = 22
 final_gd = 7
-final_gw = 23
+final_gw = 24
 
 # Player Settings
 locked = []
-banned = [418, 753, 189, 353, 177, 736, 554]
+banned = [535]
 gd_banned = []
-gds_to_zero = ["Gameweek 21 - Day 2"]
-ids_to_zero = [82]
+gds_to_zero = []
+ids_to_zero = []
 
 # Chip Settings
 wildcard = False
@@ -36,7 +36,7 @@ allstar_day = "Gameweek 25 - Day 6"
 # Solver Settings
 max_time = 300
 gap = 0.0
-info_source = "API" #4853
+info_source = "" #4853
 
 def main(
     info_source,
