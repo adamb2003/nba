@@ -22,10 +22,10 @@ final_gw = 24
 
 # Player Settings
 locked = []
-banned = [535]
+banned = [535, 712]
 gd_banned = []
-gds_to_zero = []
-ids_to_zero = []
+gds_to_zero = ["Gameweek 22 - Day 1"]
+ids_to_zero = [157]
 
 # Chip Settings
 wildcard = False
