@@ -15,17 +15,17 @@ value_cutoff = 0.25
 transfer_penalty = {1: 18, 2: 12, 3: 6, 4: 6, 5: 0, 6: 0, 7: 0}
 
 # Gameday Range
-first_gd = 1
+first_gd = 3
 first_gw = 22
 final_gd = 7
 final_gw = 24
 
 # Player Settings
 locked = []
-banned = [535, 712]
+banned = [418, 712, 771]
 gd_banned = []
-gds_to_zero = ["Gameweek 22 - Day 1"]
-ids_to_zero = [157]
+gds_to_zero = []
+ids_to_zero = []
 
 # Chip Settings
 wildcard = False
@@ -159,6 +159,9 @@ def main(
 
     player_data.to_csv("../output/NBA_EV.csv", index=False)
     print("EV generated and output to NBA_EV.csv")
+
+    player_data = pd.read_csv("../data/NBA_EV.csv") # added line to use editable EV data
+
     nba_solver(
         player_data,
         locked,
@@ -175,7 +178,6 @@ def main(
         max_time,
         transfer_penalty,
     )
-
 
 def get_player_info():
 
