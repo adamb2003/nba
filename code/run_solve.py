@@ -8,21 +8,21 @@ import time
 from solver import nba_solver
 
 # EV Settings
-decay = 0.90
+decay = 1
 home = 1.02
 away = 0.98
 value_cutoff = 0.25
 transfer_penalty = {1: 18, 2: 12, 3: 6, 4: 6, 5: 0, 6: 0, 7: 0}
 
 # Gameday Range
-first_gd = 3
-first_gw = 22
-final_gd = 7
-final_gw = 24
+first_gd = 1
+first_gw = 23
+final_gd = 6
+final_gw = 25
 
 # Player Settings
 locked = []
-banned = [418, 712, 771]
+banned = [418, 712, 771, 366, 650, 820, 585]
 gd_banned = []
 gds_to_zero = []
 ids_to_zero = []
