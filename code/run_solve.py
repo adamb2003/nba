@@ -21,7 +21,7 @@ final_gd = 6
 final_gw = 25
 
 # Player Settings
-locked = []
+locked = [410]
 banned = [418, 712, 771, 366, 650, 820, 585]
 gd_banned = []
 gds_to_zero = []
