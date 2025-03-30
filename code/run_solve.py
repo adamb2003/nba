@@ -15,14 +15,14 @@ value_cutoff = 0.25
 transfer_penalty = {1: 18, 2: 12, 3: 6, 4: 6, 5: 0, 6: 0, 7: 0}
 
 # Gameday Range
-first_gd = 1
+first_gd = 7
 first_gw = 23
 final_gd = 6
 final_gw = 25
 
 # Player Settings
-locked = [410]
-banned = [418, 712, 771, 366, 650, 820, 585]
+locked = []
+banned = [27, 524, 588, 682]
 gd_banned = []
 gds_to_zero = []
 ids_to_zero = []

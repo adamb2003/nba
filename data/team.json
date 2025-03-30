@@ -1,19 +1,19 @@
 {
   "picks": [
     {
-      "element": 152,
+      "element": 21,
       "position": 1,
-      "selling_price": 53,
+      "selling_price": 85,
       "multiplier": 1,
-      "purchase_price": 51,
+      "purchase_price": 84,
       "is_captain": false
     },
     {
-      "element": 269,
+      "element": 152,
       "position": 2,
-      "selling_price": 119,
+      "selling_price": 53,
       "multiplier": 1,
-      "purchase_price": 119,
+      "purchase_price": 51,
       "is_captain": false
     },
     {
@@ -25,51 +25,51 @@
       "is_captain": false
     },
     {
-      "element": 128,
+      "element": 340,
       "position": 4,
-      "selling_price": 61,
+      "selling_price": 142,
       "multiplier": 1,
-      "purchase_price": 60,
+      "purchase_price": 141,
       "is_captain": true
     },
     {
-      "element": 157,
+      "element": 242,
       "position": 5,
-      "selling_price": 212,
+      "selling_price": 117,
       "multiplier": 1,
-      "purchase_price": 212,
-      "is_captain": false
-    },
-    {
-      "element": 733,
-      "position": 6,
-      "selling_price": 51,
-      "multiplier": 0,
-      "purchase_price": 49,
+      "purchase_price": 117,
       "is_captain": false
     },
     {
       "element": 82,
-      "position": 7,
+      "position": 6,
       "selling_price": 59,
       "multiplier": 0,
       "purchase_price": 59,
       "is_captain": false
     },
     {
-      "element": 340,
-      "position": 8,
-      "selling_price": 141,
+      "element": 410,
+      "position": 7,
+      "selling_price": 148,
       "multiplier": 0,
-      "purchase_price": 141,
+      "purchase_price": 148,
       "is_captain": false
     },
     {
-      "element": 21,
-      "position": 9,
-      "selling_price": 85,
+      "element": 128,
+      "position": 8,
+      "selling_price": 62,
       "multiplier": 0,
-      "purchase_price": 84,
+      "purchase_price": 60,
+      "is_captain": false
+    },
+    {
+      "element": 269,
+      "position": 9,
+      "selling_price": 119,
+      "multiplier": 0,
+      "purchase_price": 119,
       "is_captain": false
     },
     {
@@ -81,11 +81,11 @@
       "is_captain": false
     }
   ],
-  "picks_last_updated": "2025-03-23T18:42:30.936448Z",
+  "picks_last_updated": "2025-03-30T02:30:59.086920Z",
   "chips": [
     {
-      "status_for_entry": "available",
-      "played_by_entry": [],
+      "status_for_entry": "played",
+      "played_by_entry": [144],
       "name": "phcapt",
       "number": 1,
       "start_event": 144,
@@ -118,8 +118,8 @@
     "cost": 1000,
     "status": "cost",
     "limit": 2,
-    "made": 0,
-    "bank": 13,
-    "value": 1021
+    "made": 2,
+    "bank": 11,
+    "value": 1024
   }
 }
