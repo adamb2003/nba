@@ -12,8 +12,8 @@ decay = 1
 home = 1.02
 away = 0.98
 value_cutoff = 0.25
-#transfer_penalty = {1: 18, 2: 12, 3: 6, 4: 6, 5: 0, 6: 0, 7: 0}
-transfer_penalty = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0}
+transfer_penalty = {1: 18, 2: 12, 3: 6, 4: 6, 5: 0, 6: 0, 7: 0}
+#transfer_penalty = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0}
 
 # Gameday Range
 first_gd = 1
@@ -37,7 +37,7 @@ allstar_day = "Gameweek 25 - Day 6"
 # Solver Settings
 max_time = 300
 gap = 0.0
-info_source = "" #4853
+info_source = "API" #4853
 
 def main(
     info_source,
@@ -161,7 +161,7 @@ def main(
     player_data.to_csv("../output/NBA_EV.csv", index=False)
     print("EV generated and output to NBA_EV.csv")
 
-    player_data = pd.read_csv("../data/NBA_EV.csv") # added line to use editable EV data
+    #player_data = pd.read_csv("../data/NBA_EV.csv") # added line to use editable EV data
 
     nba_solver(
         player_data,
