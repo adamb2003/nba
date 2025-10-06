@@ -28,7 +28,7 @@ EV and Solve will be found in the output folder following a successful run.
 
 Player data in the repository is taken from Hashtag Basketball (as of 6/2/25). If you'd like to update this, you can replace the content in hashtag_Season.csv by copying and pasting from here: https://hashtagbasketball.com/fantasy-basketball-rankings
 
-Team defensive data in the repository is taken from the official NBA stats website (as of 6/2/25). If you'd like to update this, you can replace the content in team_def_data_2425.csv by copying and pasting from here (important that it's PER GAME): https://www.nba.com/stats/teams/opponent
+Team defensive data in the repository is taken from the official NBA stats website (as of 6/10/25). If you'd like to update this, you can replace the content in team_def_data_2425.csv by copying and pasting from here (important that it's PER GAME): https://www.nba.com/stats/teams/opponent
 
 When you first run the code, it will pull player information (Cost, Injury Status, etc) and fixture information from the NBA Fantasy API. This also generates CSV files, however, you can change the setting "info_source" to be blank if you don't want to refresh these, saving time.
 

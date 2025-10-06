@@ -17,13 +17,13 @@ transfer_penalty = {1: 18, 2: 12, 3: 6, 4: 6, 5: 0, 6: 0, 7: 0}
 
 # Gameday Range
 first_gd = 1
-first_gw = 25
-final_gd = 6
-final_gw = 25
+first_gw = 1
+final_gd = 7
+final_gw = 3
 
 # Player Settings
 locked = []
-banned = [27, 588, 344, 734, 673, 389, 376]
+banned = []
 gd_banned = []
 gds_to_zero = []
 ids_to_zero = []
@@ -32,12 +32,12 @@ ids_to_zero = []
 wildcard = False
 allstar = False
 day_solve = False
-allstar_day = "Gameweek 25 - Day 6"
+allstar_day = ""
 
 # Solver Settings
 max_time = 300
 gap = 0.0
-info_source = "API" #4853
+info_source = "API" #1330
 
 def main(
     info_source,
@@ -251,7 +251,7 @@ def read_hashtag():
     cols = ["PTS", "TREB", "AST", "STL", "BLK", "TO"]
     data[cols] = data[cols].apply(pd.to_numeric, errors="coerce")
 
-    multiplier = [1, 1.2, 1.5, 3, 3, -1]
+    multiplier = [1, 1, 2, 3, 3, 0]
     data[cols] = data[cols] * multiplier
     data["PPG"] = data[cols].sum(axis=1)
     return data
