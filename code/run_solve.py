@@ -18,8 +18,8 @@ transfer_penalty = {1: 18, 2: 12, 3: 6, 4: 6, 5: 0, 6: 0, 7: 0}
 # Gameday Range
 first_gd = 1
 first_gw = 1
-final_gd = 7
-final_gw = 3
+final_gd = 6
+final_gw = 1
 
 # Player Settings
 locked = []
@@ -29,15 +29,15 @@ gds_to_zero = []
 ids_to_zero = []
 
 # Chip Settings
-wildcard = False
+wildcard = True
 allstar = False
 day_solve = False
 allstar_day = ""
 
 # Solver Settings
-max_time = 300
+max_time = 120
 gap = 0.0
-info_source = "API" #1330
+info_source = "" #API #1330
 
 def main(
     info_source,
@@ -182,7 +182,7 @@ def main(
 
 def get_player_info():
 
-    url = "https://nbafantasy.nba.com/api/bootstrap-static/"
+    url = "https://nbafantasy.nba.com//api/bootstrap-static/"
     r = requests.get(url)
     json = r.json()
     elements = pd.DataFrame(json["elements"])
@@ -298,7 +298,7 @@ def read_fixtures(first_gd, first_gw, final_gw, final_gd):
 
 def read_team_def_strength():
 
-    data = pd.read_csv("../Data/team_def_data_2425.csv")
+    data = pd.read_csv("../data/team_def_data_2425.csv")
     data_cols = ["PTS", "REB", "AST", "STL", "BLK", "TOV"]
 
     for col in data_cols:
