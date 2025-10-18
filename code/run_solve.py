@@ -8,7 +8,7 @@ import time
 from solver import nba_solver
 
 # EV Settings
-decay = 1
+decay = 0.8
 home = 1.02
 away = 0.98
 value_cutoff = 0.25
@@ -19,7 +19,7 @@ transfer_penalty = {1: 18, 2: 12, 3: 6, 4: 6, 5: 0, 6: 0, 7: 0}
 first_gd = 1
 first_gw = 1
 final_gd = 6
-final_gw = 1
+final_gw = 4
 
 # Player Settings
 locked = []
@@ -161,7 +161,7 @@ def main(
     player_data.to_csv("../output/NBA_EV.csv", index=False)
     print("EV generated and output to NBA_EV.csv")
 
-    #player_data = pd.read_csv("../data/NBA_EV.csv") # added line to use editable EV data
+    player_data = pd.read_csv("../data/NBA_EV.csv") # added line to use editable EV data
 
     nba_solver(
         player_data,

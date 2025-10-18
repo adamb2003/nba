@@ -24,7 +24,7 @@ def nba_solver(
 ):
     print("Setting up and starting solve")
     team_value = data[data["id"].isin(in_team)]["now_cost"].sum()
-    money = team_value + in_bank
+    money = 1000 # money = team_value + in_bank
     print(f"Money: {money}")
 
     # Remove banned players
