@@ -22,16 +22,14 @@ final_gd = 6
 final_gw = 1
 
 # Player Settings
-locked = [63, 25, 417, 506, 620, 
-          410, 261, 183, 491, 226]
-banned = [4, 6, 24, 32, 33, 73, 98, 126, 128, 145, 153, 155, 160, 171, 184, 186, 194, 223, 227, 235, 278, 287, 289, 314, 333, 346, 
-          355, 375, 376, 387, 413, 418, 451, 457, 459, 462, 478, 503, 507, 526, 546, 593, 603, 20, 52, 583]
+locked = []
+banned = []
 gd_banned = []
 gds_to_zero = []
 ids_to_zero = []
 
 # Chip Settings
-wildcard = True
+wildcard = False
 allstar = False
 day_solve = False
 allstar_day = ""
