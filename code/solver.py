@@ -1,9 +1,8 @@
 import pandas as pd
 import pulp
 import re
-import xlsxwriter
-import uuid
 import datetime
+import numpy as np
 
 
 def nba_solver(
@@ -21,21 +20,45 @@ def nba_solver(
     gap,
     max_time,
     transfer_penalty,
+    first_gw,
+    first_gd,
+    final_gw,
+    final_gd,
 ):
     print("Setting up and starting solve")
     team_value = data[data["id"].isin(in_team)]["now_cost"].sum()
     money = team_value + in_bank
     print(f"Money: {money}")
 
-    # Remove banned players
+    # remove banned players
     data = data[~data["id"].isin(banned)]
 
     data = data.set_index("id")
 
     player_ids = data.index
-    point_columns = data.columns[11:]
+    point_columns = [
+        col for col in data.columns if re.match(r"^Gameweek \d+ - Day \d+$", col)
+    ]
+    print(f"Found {len(point_columns)} point columns: {point_columns}")
 
-    # Create dictionary of gameweeks + game days
+    filtered_point_columns = []
+    for col in point_columns:
+        week = int(re.findall(r"(\d+)", col)[0])
+        day = int(re.findall(r"(\d+)", col)[1])
+
+        in_range = True
+        if week < first_gw or (week == first_gw and day < first_gd):
+            in_range = False
+        if week > final_gw or (week == final_gw and day > final_gd):
+            in_range = False
+
+        if in_range:
+            filtered_point_columns.append(col)
+
+    point_columns = filtered_point_columns
+    print(f"Solving for {len(point_columns)} columns: {point_columns}")
+
+    # create dictionary of gameweeks + game days
     week_day_list = []
     week_day_dict = {}
     for col in point_columns:
@@ -57,21 +80,21 @@ def nba_solver(
 
     in_team_flag = {id: 1 if id in in_team else 0 for id in player_ids}
 
-    # Create columns for team and position
+    # create columns for team and position
     positions = pd.get_dummies(data, columns=["element_type"], prefix="pos")[
         ["pos_1", "pos_2"]
     ].astype(int)
     teams = pd.get_dummies(data, columns=["team"], prefix="team")
     teams = teams.loc[:, teams.columns.str.startswith("team_")].astype(int)
 
-    # Create dictionaries
+    # create dictionaries
     points = {i: {j: {} for j in week_day_dict[i]} for i in week_day_dict.keys()}
     squad_var = {i: {j: {} for j in week_day_dict[i]} for i in week_day_dict.keys()}
     team_var = {i: {j: {} for j in week_day_dict[i]} for i in week_day_dict.keys()}
     cap_var = {i: {j: {} for j in week_day_dict[i]} for i in week_day_dict.keys()}
     transfer_var = {i: {j: {} for j in week_day_dict[i]} for i in week_day_dict.keys()}
 
-    # Apply decay to transfer penalties
+    # apply decay to transfer penalties
     decay_factor = decay
     cumulative_index = 0
 
@@ -80,20 +103,18 @@ def nba_solver(
         decay_dict[week] = {}
         for day in days:
             decay_dict[week][day] = decay_factor**cumulative_index
-            #cumulative_index += 1
-        cumulative_index += 1
+            cumulative_index += 1
 
     base_penalty = transfer_penalty
 
     penalty_dict = {
-        week: {day: base_penalty[day] for day in days if day in base_penalty}
+        week: {day: base_penalty[str(day)] for day in str(days) if day in base_penalty}
         for week, days in week_day_dict.items()
     }
 
     # Create variables for each gameweek + gameday IN ORDER accounting for varying week lengths
     for a in week_day_dict.keys():
         for b in week_day_dict[a]:
-
             position = None
             current_position = 0
 
@@ -128,10 +149,10 @@ def nba_solver(
     prob = pulp.LpProblem("Optimiser", pulp.LpMaximize)
 
     # Objective Function
-    if day_solve == True:
+    if day_solve:
         prob += pulp.lpSum(
             [
-                ((points[a][b][i] * team_var[a][b][i]))
+                (points[a][b][i] * team_var[a][b][i])
                 for a in week_day_dict.keys()
                 for b in week_day_dict[a]
                 for i in player_ids
@@ -143,7 +164,11 @@ def nba_solver(
                 (
                     (points[a][b][i] * team_var[a][b][i])
                     + (points[a][b][i] * cap_var[a][b][i])
-                    - (transfer_var[a][b][i] * penalty_dict[a][b] * decay_dict[a][b])
+                    - (
+                        transfer_var[a][b][i]
+                        * penalty_dict[a][str(b)]
+                        * decay_dict[a][b]
+                    )
                 )
                 for a in week_day_dict.keys()
                 for b in week_day_dict[a]
@@ -152,8 +177,7 @@ def nba_solver(
         )
 
     for a in week_day_dict.keys():
-
-        if cap_used == True and a == current_week:
+        if cap_used and a == current_week:
             prob += (
                 pulp.lpSum(
                     [cap_var[a][b][i] for b in week_day_dict[a] for i in player_ids]
@@ -191,7 +215,7 @@ def nba_solver(
                 == 5
             )
 
-            if day_solve == False:
+            if not day_solve:
                 prob += (
                     pulp.lpSum(
                         [data["now_cost"][i] * squad_var[a][b][i] for i in player_ids]
@@ -211,7 +235,7 @@ def nba_solver(
                 prob += team_var[a][b][i] <= squad_var[a][b][i]
                 prob += cap_var[a][b][i] <= team_var[a][b][i]
 
-    if day_solve == False:
+    if not day_solve:
         # Track transfers across days and weeks
         for a in week_day_dict.keys():
             for b in week_day_dict[a]:
@@ -219,9 +243,9 @@ def nba_solver(
                     # Transfer event: 1 if the player was added or removed on this day, 0 otherwise
 
                     # Transfer check within the same week (compare with the previous day in the same week)
-                    if a == current_week and b == current_day and wildcard == True:
+                    if a == current_week and b == current_day and wildcard:
                         prob += transfer_var[a][b][i] == 0
-                    elif a == current_week and b == current_day and wildcard == False:
+                    elif a == current_week and b == current_day and not wildcard:
                         prob += (
                             transfer_var[a][b][i]
                             >= squad_var[a][b][i] - in_team_flag[i]
@@ -272,7 +296,7 @@ def nba_solver(
     for i in locked:
         prob += squad_var[current_week][current_day][i] == 1
 
-    if wildcard == False and day_solve == False:
+    if not wildcard and not day_solve:
         prob += (
             pulp.lpSum([squad_var[current_week][current_day][i] for i in in_team]) >= 8
         )
@@ -319,7 +343,7 @@ def nba_solver(
                 combined_df[f"xPts_{day_str}"] = data[ev_col].reset_index()[
                     f"Gameweek {a} - Day {b}"
                 ]
-
+    full_player_df = combined_df.copy()
     squad_columns = [col for col in combined_df.columns if col.startswith("squad_")]
     combined_df = combined_df[combined_df[squad_columns].eq(1).any(axis=1)]
 
@@ -348,22 +372,22 @@ def nba_solver(
         ].copy()
 
         if gw_day_str in data.columns:
-            day_team_df["display_name"] = day_team_df.apply(
-                lambda row: (
-                    f"{row['name']}({data.loc[row['id'], gw_day_str]:.2f})"
-                    if not pd.isna(data.loc[row["id"], gw_day_str])
-                    else row["name"]
-                ),
-                axis=1,
+            points_lookup = data[gw_day_str]
+
+            team_points = day_team_df["id"].map(points_lookup)
+
+            day_team_df["display_name"] = np.where(
+                team_points.isna(),
+                day_team_df["name"],
+                day_team_df["name"] + "(" + team_points.round(2).astype(str) + ")",
             )
 
-            day_bench_df["display_name"] = day_bench_df.apply(
-                lambda row: (
-                    f"{row['name']}({data.loc[row['id'], gw_day_str]:.2f})"
-                    if not pd.isna(data.loc[row["id"], gw_day_str])
-                    else row["name"]
-                ),
-                axis=1,
+            bench_points = day_bench_df["id"].map(points_lookup)
+
+            day_bench_df["display_name"] = np.where(
+                bench_points.isna(),
+                day_bench_df["name"],
+                day_bench_df["name"] + "(" + bench_points.round(2).astype(str) + ")",
             )
         else:
             day_team_df["display_name"] = day_team_df["name"]
@@ -383,19 +407,19 @@ def nba_solver(
         team_summary[day_str] = day_team_df["display_name"].tolist()
         bench_summary[day_str] = day_bench_df["display_name"].tolist()
 
-    # Current gws
+    # current gws
     first_gw_day = f"{current_week}_{current_day}"
     first_squad_col = f"squad_{first_gw_day}"
 
     print()
     print(f"{first_gw_day}: ")
-    for _, row in combined_df.iterrows():
+    for _, row in full_player_df.iterrows():
         if row["current"] != row[first_squad_col]:
             if row["current"] == 1:
-                print(f"Sell: {row['name']}, Price: {row['now_cost']}")
+                print(f"Sell: {row['name']}, Price: {row['now_cost'] / 10}")
                 sell_summary.append(row["name"])
             else:
-                print(f"Buy: {row['name']}, Price: {row['now_cost']}")
+                print(f"Buy: {row['name']}, Price: {row['now_cost'] / 10}")
                 buy_summary.append(row["name"])
 
     print("Line-up: ")
@@ -429,21 +453,20 @@ def nba_solver(
     print(f"Cumulative xPts: {day_xPts:.2f}")
     print()
 
-    # Future gws
+    # future gws
     squad_day_cols = [col for col in combined_df.columns if col.startswith("squad_")]
     squad_day_cols.sort()
 
     for i in range(1, len(squad_day_cols)):
         current_day = squad_day_cols[i].replace("squad_", "")
-        prev_day = squad_day_cols[i - 1].replace("squad_", "")
 
         print(f"{current_day} : ")
         for _, row in combined_df.iterrows():
             if row[squad_day_cols[i - 1]] != row[squad_day_cols[i]]:
                 if row[squad_day_cols[i - 1]] == 1:
-                    print(f"Sell: {row['name']}, Price: {row['now_cost']}")
+                    print(f"Sell: {row['name']}, Price: {row['now_cost'] / 10}")
                 else:
-                    print(f"Buy: {row['name']}, Price: {row['now_cost']}")
+                    print(f"Buy: {row['name']}, Price: {row['now_cost'] / 10}")
         print("Line-up: ")
         front_court = []
         back_court = []
