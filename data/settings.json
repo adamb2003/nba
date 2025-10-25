@@ -16,7 +16,7 @@
   "first_gw": 1,
   "final_gd": 7,
   "final_gw": 2,
-  "locked": [],
+  "locked": [540, 229, 605, 91, 72, 410, 224, 463, 94, 419],
   "banned": [],
   "gd_banned": [],
   "gds_to_zero": [],
@@ -31,5 +31,5 @@
   "info_source": "API",
   "team_data": "id",
   "team_id": 1330,
-  "ev_sheet": true
+  "ev_sheet": false
 }

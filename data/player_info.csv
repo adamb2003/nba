@@ -1,7 +1,7 @@
 id,name,now_cost,team,element_type,status
 1,Trae Young,170,1,1,a
 2,Onyeka Okongwu,120,1,2,a
-3,Jalen Johnson,135,1,2,a
+3,Jalen Johnson,135,1,2,d
 4,Mouhamed Gueye,45,1,2,a
 5,Vit Krejci,65,1,1,a
 6,Keaton Wallace,45,1,1,a
@@ -201,7 +201,7 @@ id,name,now_cost,team,element_type,status
 196,Alex Toohey,45,10,2,i
 197,Taevion Kinsey,45,10,1,u
 198,LJ Cryer,45,10,2,u
-618,Al Horford,85,10,2,i
+618,Al Horford,85,10,2,d
 620,Jonathan Kuminga,85,10,2,a
 623,De'Anthony Melton,75,10,1,i
 626,Seth Curry,55,10,1,u
@@ -296,7 +296,7 @@ id,name,now_cost,team,element_type,status
 287,Ja Morant,145,15,1,a
 288,Brandon Clarke,75,15,2,i
 289,John Konchar,55,15,1,a
-290,Santi Aldama,95,15,2,a
+290,Santi Aldama,95,15,2,d
 291,Vince Williams Jr.,85,15,1,i
 292,GG Jackson,85,15,2,a
 293,Zach Edey,85,15,2,i
@@ -423,14 +423,14 @@ id,name,now_cost,team,element_type,status
 408,Isaiah Hartenstein,115,21,2,a
 409,Isaiah Joe,65,21,1,i
 410,Shai Gilgeous-Alexander,185,21,1,a
-411,Chet Holmgren,135,21,2,d
+411,Chet Holmgren,135,21,2,a
 412,Luguentz Dort,85,21,1,a
 413,Aaron Wiggins,75,21,1,a
 414,Kenrich Williams,55,21,2,i
 415,Jalen Williams,150,21,1,i
 416,Ousmane Dieng,45,21,2,a
 417,Jaylin Williams,55,21,2,a
-418,Cason Wallace,80,21,1,i
+418,Cason Wallace,80,21,1,a
 419,Ajay Mitchell,45,21,1,a
 420,Nikola Topic,55,21,1,i
 421,Branden Carlson,45,21,2,a
@@ -448,7 +448,7 @@ id,name,now_cost,team,element_type,status
 432,Wendell Carter Jr.,85,22,2,a
 433,Jonathan Isaac,70,22,2,a
 434,Paolo Banchero,150,22,2,a
-435,Jalen Suggs,105,22,1,d
+435,Jalen Suggs,105,22,1,i
 436,Moritz Wagner,75,22,2,i
 437,Goga Bitadze,80,22,2,a
 438,Anthony Black,80,22,1,a
@@ -474,7 +474,7 @@ id,name,now_cost,team,element_type,status
 457,Kelly Oubre Jr.,85,23,1,a
 458,Eric Gordon,55,23,1,a
 459,Adem Bona,60,23,2,a
-460,Justin Edwards,60,23,2,d
+460,Justin Edwards,60,23,2,a
 461,Jared McCain,80,23,1,i
 462,Johni Broome,45,23,2,a
 463,VJ Edgecombe,75,23,1,a
