@@ -12,12 +12,12 @@
     "6": 0,
     "7": 0
   },
-  "first_gd": 1,
+  "first_gd": 7,
   "first_gw": 2,
   "final_gd": 7,
   "final_gw": 3,
-  "locked": [265],
-  "banned": [20, 210],
+  "locked": [],
+  "banned": [],
   "gd_banned": [],
   "gds_to_zero": [],
   "ids_to_zero": [],
@@ -28,8 +28,8 @@
   "allstar_day": "",
   "max_time": 180,
   "gap": 0.0,
-  "info_source": "",
+  "info_source": "API",
   "team_data": "id",
   "team_id": 1330,
-  "ev_sheet": true
+  "ev_sheet": false
 }
