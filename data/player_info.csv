@@ -50,7 +50,7 @@ id,name,now_cost,team,element_type,status
 50,Ziaire Williams,75,3,2,a
 51,Tyson Etienne,45,3,1,a
 52,Egor Dëmin,65,3,1,a
-53,Drake Powell,50,3,1,a
+53,Drake Powell,50,3,1,i
 54,Ben Saraf,50,3,1,a
 55,Nolan Traore,49,3,1,a
 56,Danny Wolf,55,3,2,i
@@ -63,13 +63,13 @@ id,name,now_cost,team,element_type,status
 63,Moussa Diabate,65,4,2,a
 64,Grant Williams,85,4,2,i
 65,Tre Mann,85,4,1,a
-66,LaMelo Ball,150,4,1,a
+66,LaMelo Ball,150,4,1,i
 67,Miles Bridges,135,4,2,a
 68,Brandon Miller,120,4,2,i
 69,Tidjane Salaun,60,4,2,a
-70,K.J. Simpson,50,4,1,a
+70,K.J. Simpson,49,4,1,a
 71,Sion James,45,4,1,a
-72,Ryan Kalkbrenner,55,4,2,a
+72,Ryan Kalkbrenner,56,4,2,a
 73,Kon Knueppel,65,4,1,a
 74,Liam McNeeley,50,4,2,a
 75,Spencer Dinwiddie,90,4,1,u
@@ -82,11 +82,11 @@ id,name,now_cost,team,element_type,status
 627,Eric Dixon,45,4,2,u
 82,Nikola Vucevic,140,5,2,a
 83,Coby White,120,5,1,i
-84,Ayo Dosunmu,95,5,1,d
+84,Ayo Dosunmu,95,5,1,i
 85,Patrick Williams,70,5,2,a
 86,Dalen Terry,49,5,1,a
 87,Jevon Carter,45,5,1,a
-88,Julian Phillips,50,5,2,d
+88,Julian Phillips,50,5,2,a
 89,Jalen Smith,70,5,2,a
 90,Josh Giddey,135,5,1,a
 91,Matas Buzelis,75,5,2,a
@@ -109,7 +109,7 @@ id,name,now_cost,team,element_type,status
 107,Evan Mobley,140,6,2,a
 108,Jarrett Allen,129,6,2,i
 109,Dean Wade,55,6,2,a
-110,Donovan Mitchell,150,6,1,i
+110,Donovan Mitchell,150,6,1,a
 111,Sam Merrill,60,6,1,i
 112,Max Strus,75,6,1,i
 113,Craig Porter,45,6,1,a
@@ -121,6 +121,7 @@ id,name,now_cost,team,element_type,status
 119,Miller Kopp,45,6,2,u
 120,Chaney Johnson,45,6,2,u
 121,Norchad Omier,45,6,2,u
+332,Chris Livingston,45,6,2,a
 122,Dennis Smith Jr.,60,7,1,u
 123,D'Angelo Russell,100,7,1,a
 124,Naji Marshall,84,7,2,a
@@ -132,7 +133,7 @@ id,name,now_cost,team,element_type,status
 130,Brandon Williams,65,7,1,a
 131,Daniel Gafford,100,7,2,a
 132,P.J. Washington,105,7,2,a
-133,Klay Thompson,85,7,1,a
+133,Klay Thompson,84,7,1,a
 134,Anthony Davis,165,7,2,i
 135,Max Christie,80,7,1,a
 136,Caleb Martin,80,7,2,a
@@ -143,11 +144,11 @@ id,name,now_cost,team,element_type,status
 141,Ryan Nembhard,45,7,1,a
 613,Dalano Banton,55,7,2,u
 143,Moses Brown,50,8,2,u
-144,Cameron Johnson,95,8,2,a
+144,Cameron Johnson,95,8,2,d
 145,Kessler Edwards,50,8,2,u
 146,Nikola Jokic,220,8,2,a
 147,Aaron Gordon,105,8,2,a
-148,Jamal Murray,140,8,1,a
+148,Jamal Murray,140,8,1,d
 149,Zeke Nnaji,45,8,2,a
 150,Christian Braun,115,8,1,a
 151,Peyton Watson,75,8,2,a
@@ -164,7 +165,7 @@ id,name,now_cost,team,element_type,status
 162,Charles Bediako,45,9,2,u
 163,Caris LeVert,90,9,1,a
 164,Javonte Green,60,9,1,a
-165,Tobias Harris,120,9,2,a
+165,Tobias Harris,120,9,2,d
 166,Paul Reed,65,9,2,a
 167,Cade Cunningham,170,9,1,a
 168,Isaiah Stewart,95,9,2,a
@@ -199,19 +200,19 @@ id,name,now_cost,team,element_type,status
 196,Alex Toohey,45,10,2,i
 197,Taevion Kinsey,45,10,1,u
 198,LJ Cryer,45,10,2,u
-618,Al Horford,85,10,2,a
+618,Al Horford,85,10,2,i
 620,Jonathan Kuminga,85,10,2,a
 623,De'Anthony Melton,75,10,1,i
 626,Seth Curry,55,10,1,u
 199,Clint Capela,100,11,2,a
 200,Kevon Harris,45,11,1,a
-201,JD Davison,45,11,1,a
+201,JD Davison,45,11,1,i
 202,Josh Okogie,55,11,1,a
 203,Aaron Holiday,54,11,1,a
 204,Jeff Green,49,11,2,a
 205,Alperen Sengun,160,11,2,a
 206,Jae'Sean Tate,45,11,2,a
-207,Jabari Smith Jr.,100,11,2,a
+207,Jabari Smith Jr.,100,11,2,d
 208,Tari Eason,100,11,2,a
 209,Fred VanVleet,95,11,1,i
 210,Amen Thompson,135,11,1,a
@@ -223,7 +224,7 @@ id,name,now_cost,team,element_type,status
 216,Isaiah Crawford,45,11,2,a
 142,Jeremiah Robinson-Earl,54,12,2,a
 217,Gabe McGlothan,45,12,2,u
-218,RayJ Dennis,45,12,2,a
+218,RayJ Dennis,45,12,2,d
 219,Quenton Jackson,45,12,1,a
 220,Obi Toppin,85,12,2,i
 221,Tyrese Haliburton,135,12,1,u
@@ -235,11 +236,11 @@ id,name,now_cost,team,element_type,status
 227,Ben Sheppard,55,12,1,a
 228,Jarace Walker,65,12,2,a
 229,Pascal Siakam,140,12,2,a
-230,Johnny Furphy,45,12,1,a
+230,Johnny Furphy,45,12,1,d
 231,Tony Bradley,45,12,2,a
 232,Kam Jones,45,12,1,i
 233,Taelon Peter,44,12,1,a
-234,Jay Huff,85,12,2,a
+234,Jay Huff,84,12,2,a
 235,James Wiseman,50,12,2,u
 236,Jalen Slawson,45,12,2,u
 237,Delon Wright,50,12,1,u
@@ -256,7 +257,7 @@ id,name,now_cost,team,element_type,status
 246,Kris Dunn,75,13,1,a
 247,Cam Christie,45,13,1,a
 249,Patrick Baldwin Jr.,45,13,2,u
-250,Yanic Konan Niederhäuser,45,13,2,i
+250,Yanic Konan Niederhäuser,45,13,2,a
 251,Kobe Sanders,45,13,1,i
 252,Brook Lopez,85,13,2,a
 253,Bradley Beal,100,13,1,a
@@ -267,11 +268,11 @@ id,name,now_cost,team,element_type,status
 258,Jahmyl Telfort,45,13,2,a
 259,Nick Smith Jr.,59,14,1,a
 260,Jeenathan Williams,45,14,1,u
-261,Luka Doncic,180,14,1,a
-262,Maxi Kleber,50,14,2,i
+261,Luka Doncic,180,14,1,i
+262,Maxi Kleber,50,14,2,d
 263,Jaxson Hayes,65,14,2,a
 264,LeBron James,165,14,2,i
-265,Austin Reaves,130,14,1,a
+265,Austin Reaves,130,14,1,i
 266,Jarred Vanderbilt,60,14,2,a
 267,Rui Hachimura,90,14,2,a
 268,Gabe Vincent,50,14,1,i
@@ -282,7 +283,7 @@ id,name,now_cost,team,element_type,status
 273,Chris Mañon,45,14,1,a
 274,Augustas Marčiulionis,45,14,1,u
 275,Adou Thiero,45,14,1,i
-276,Deandre Ayton,110,14,2,d
+276,Deandre Ayton,110,14,2,i
 277,Jake LaRavia,70,14,2,a
 278,Marcus Smart,80,14,1,a
 279,Anton Watson,45,14,2,u
@@ -294,7 +295,7 @@ id,name,now_cost,team,element_type,status
 284,Jock Landale,50,15,2,a
 285,Scotty Pippen Jr.,95,15,1,i
 286,Jaren Jackson Jr.,140,15,2,a
-287,Ja Morant,145,15,1,s
+287,Ja Morant,145,15,1,a
 288,Brandon Clarke,75,15,2,i
 289,John Konchar,55,15,1,a
 290,Santi Aldama,95,15,2,a
@@ -335,12 +336,11 @@ id,name,now_cost,team,element_type,status
 324,Pete Nance,45,17,2,a
 325,Kevin Porter Jr.,85,17,1,i
 326,Taurean Prince,70,17,2,a
-327,Giannis Antetokounmpo,185,17,2,a
+327,Giannis Antetokounmpo,185,17,2,d
 328,Bobby Portis,95,17,2,a
 329,Thanasis Antetokounmpo,45,17,2,a
 330,A.J. Green,55,17,1,a
 331,Andre Jackson Jr.,49,17,1,a
-332,Chris Livingston,45,17,2,a
 333,Ryan Rollins,60,17,1,a
 334,Gary Trent Jr.,75,17,1,a
 335,Tyler Smith,45,17,2,u
@@ -354,7 +354,7 @@ id,name,now_cost,team,element_type,status
 635,Alex Antetokounmpo,45,17,2,a
 343,Jules Bernard,45,18,1,u
 344,Zyon Pullin,45,18,1,u
-345,Enrique Freeman,45,18,2,a
+345,Enrique Freeman,44,18,2,a
 346,Bones Hyland,50,18,1,a
 347,Rudy Gobert,130,18,2,a
 348,Anthony Edwards,165,18,1,i
@@ -374,15 +374,15 @@ id,name,now_cost,team,element_type,status
 362,Johnny Juzang,59,18,1,a
 363,Alize Johnson,45,18,2,u
 364,Trey Alexander,45,19,1,a
-365,Kevon Looney,65,19,2,i
+365,Kevon Looney,65,19,2,a
 366,Dejounte Murray,135,19,1,i
-367,Zion Williamson,145,19,2,a
+367,Zion Williamson,145,19,2,d
 368,Herbert Jones,85,19,2,a
 369,Jose Alvarado,79,19,1,a
 370,Trey Murphy III,120,19,2,a
 371,Jordan Hawkins,65,19,1,a
 372,Karlo Matkovic,65,19,2,a
-373,Yves Missi,95,19,2,a
+373,Yves Missi,95,19,2,d
 374,Hunter Dickinson,45,19,2,a
 375,Jeremiah Fears,55,19,1,a
 376,Micah Peavy,45,19,1,a
@@ -407,9 +407,9 @@ id,name,now_cost,team,element_type,status
 390,Karl-Anthony Towns,165,20,2,a
 391,Mikal Bridges,125,20,2,a
 392,Jalen Brunson,150,20,1,a
-393,Mitchell Robinson,80,20,2,d
+393,Mitchell Robinson,80,20,2,i
 394,Miles McBride,70,20,1,a
-395,Josh Hart,135,20,1,a
+395,Josh Hart,135,20,1,d
 396,OG Anunoby,130,20,2,a
 397,Pacome Dadiet,45,20,2,a
 398,Ariel Hukporti,45,20,2,a
@@ -426,11 +426,11 @@ id,name,now_cost,team,element_type,status
 409,Isaiah Joe,65,21,1,a
 410,Shai Gilgeous-Alexander,186,21,1,a
 411,Chet Holmgren,135,21,2,i
-412,Luguentz Dort,85,21,1,a
+412,Luguentz Dort,85,21,1,i
 413,Aaron Wiggins,75,21,1,a
 414,Kenrich Williams,55,21,2,i
 415,Jalen Williams,150,21,1,i
-416,Ousmane Dieng,44,21,2,a
+416,Ousmane Dieng,44,21,2,d
 417,Jaylin Williams,55,21,2,a
 418,Cason Wallace,80,21,1,a
 419,Ajay Mitchell,45,21,1,a
@@ -503,18 +503,18 @@ id,name,now_cost,team,element_type,status
 483,Nigel Hayes-Davis,45,24,2,a
 484,CJ Huntley,45,24,2,a
 485,Khaman Maluach,64,24,2,a
-486,Isaiah Livers,50,24,2,d
+486,Isaiah Livers,50,24,2,i
 487,David Duke Jr.,45,24,1,u
 488,Tyrese Samuel,45,24,2,u
 489,Liam Robbins,45,25,2,u
 490,MarJon Beauchamp,45,25,2,u
-491,Jrue Holiday,90,25,1,a
+491,Jrue Holiday,91,25,1,a
 492,Damian Lillard,125,25,1,u
 493,Robert Williams III,75,25,2,a
 494,Toumani Camara,100,25,2,a
 495,Matisse Thybulle,65,25,1,i
 496,Jerami Grant,100,25,2,a
-497,Shaedon Sharpe,120,25,1,a
+497,Shaedon Sharpe,120,25,1,d
 498,Scoot Henderson,100,25,1,i
 499,Kris Murray,50,25,2,a
 500,Rayan Rupert,45,25,1,a
@@ -524,7 +524,7 @@ id,name,now_cost,team,element_type,status
 504,Sidy Cissoko,45,25,1,a
 505,Caleb Love,44,25,1,a
 506,Yang Hansen,49,25,2,a
-507,Blake Wesley,45,25,1,a
+507,Blake Wesley,45,25,1,i
 508,Javonte Cooke,44,25,1,a
 625,Sean Pedulla,45,25,2,u
 509,Dexter Dennis,45,26,1,u
@@ -565,7 +565,7 @@ id,name,now_cost,team,element_type,status
 543,Riley Minix,45,27,2,a
 544,Bismack Biyombo,60,27,2,a
 545,Carter Bryant,59,27,2,a
-546,Dylan Harper,85,27,1,a
+546,Dylan Harper,85,27,1,d
 547,David Jones,45,27,2,a
 548,Micah Potter,45,27,2,u
 549,David Roddy,50,28,2,u
@@ -583,7 +583,7 @@ id,name,now_cost,team,element_type,status
 561,Jamison Battle,49,28,2,a
 562,Ulrich Chomche,45,28,2,u
 563,Jonathan Mogbo,69,28,2,a
-564,Jamal Shead,65,28,1,d
+564,Jamal Shead,65,28,1,a
 565,Ja'Kobe Walter,60,28,1,a
 566,Jared Rhoden,50,28,1,u
 567,Chucky Hepburn,44,28,1,a
@@ -602,7 +602,7 @@ id,name,now_cost,team,element_type,status
 580,Keyonte George,105,29,1,a
 581,Taylor Hendricks,70,29,2,a
 582,Brice Sensabaugh,65,29,2,a
-583,Isaiah Collier,85,29,1,i
+583,Isaiah Collier,85,29,1,a
 584,Kyle Filipowski,85,29,2,a
 585,Cody Williams,50,29,2,a
 586,Ace Bailey,85,29,2,a
@@ -618,7 +618,7 @@ id,name,now_cost,team,element_type,status
 594,CJ McCollum,120,30,1,a
 595,Dillon Jones,50,30,2,u
 596,Malaki Branham,50,30,1,a
-597,Khris Middleton,95,30,2,a
+597,Khris Middleton,95,30,2,d
 598,AJ Johnson,45,30,1,a
 599,Justin Champagnie,69,30,2,a
 600,Corey Kispert,70,30,2,a
@@ -626,7 +626,7 @@ id,name,now_cost,team,element_type,status
 602,Bilal Coulibaly,90,30,2,a
 603,Tristan Vukcevic,50,30,2,a
 604,Carlton Carrington,90,30,1,a
-605,Kyshawn George,77,30,2,a
+605,Kyshawn George,78,30,2,a
 606,Alexandre Sarr,105,30,2,a
 607,Tre Johnson,80,30,1,a
 608,Will Riley,50,30,2,a
