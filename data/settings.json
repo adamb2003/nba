@@ -17,10 +17,15 @@
   "final_gd": 6,
   "final_gw": 6,
   "locked": [],
-  "banned": [243, 16, 617, 558, 474, 358, 296],
+  "banned": [243, 16, 617, 558, 474, 358, 296, 46, 309, 224, 580, 303],
   "gd_banned": [],
-  "gds_to_zero": [],
-  "ids_to_zero": [],
+  "gds_to_zero": [
+    "Gameweek 5 - Day 1",
+    "Gameweek 5 - Day 3",
+    "Gameweek 5 - Day 5",
+    "Gameweek 5 - Day 6"
+  ],
+  "ids_to_zero": [94],
   "booked_transfers": [],
   "day_solve": false,
   "gw_cap_used": false,
