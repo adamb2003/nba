@@ -1,34 +1,34 @@
 {
   "picks": [
     {
-      "element": 456,
+      "element": 90,
       "position": 1,
       "multiplier": 1,
       "is_captain": false,
       "is_vice_captain": false,
       "element_type": 1,
-      "selling_price": 148,
-      "purchase_price": 148
+      "selling_price": 136,
+      "purchase_price": 136
     },
     {
-      "element": 333,
+      "element": 114,
       "position": 2,
       "multiplier": 1,
       "is_captain": false,
       "is_vice_captain": false,
       "element_type": 1,
-      "selling_price": 62,
-      "purchase_price": 61
+      "selling_price": 46,
+      "purchase_price": 46
     },
     {
-      "element": 463,
+      "element": 296,
       "position": 3,
       "multiplier": 1,
       "is_captain": false,
       "is_vice_captain": false,
       "element_type": 1,
-      "selling_price": 76,
-      "purchase_price": 75
+      "selling_price": 59,
+      "purchase_price": 59
     },
     {
       "element": 3,
@@ -37,83 +37,72 @@
       "is_captain": true,
       "is_vice_captain": false,
       "element_type": 2,
-      "selling_price": 135,
-      "purchase_price": 135
+      "selling_price": 139,
+      "purchase_price": 139
     },
     {
-      "element": 146,
+      "element": 91,
       "position": 5,
       "multiplier": 1,
       "is_captain": false,
       "is_vice_captain": false,
       "element_type": 2,
-      "selling_price": 220,
-      "purchase_price": 220
+      "selling_price": 74,
+      "purchase_price": 74
     },
     {
-      "element": 502,
+      "element": 284,
       "position": 6,
       "multiplier": 0,
       "is_captain": false,
       "is_vice_captain": false,
       "element_type": 2,
-      "selling_price": 121,
-      "purchase_price": 121
+      "selling_price": 51,
+      "purchase_price": 51
     },
     {
-      "element": 605,
+      "element": 434,
       "position": 7,
       "multiplier": 0,
       "is_captain": false,
       "is_vice_captain": false,
       "element_type": 2,
-      "selling_price": 76,
-      "purchase_price": 75
+      "selling_price": 150,
+      "purchase_price": 150
     },
     {
-      "element": 72,
+      "element": 377,
       "position": 8,
       "multiplier": 0,
       "is_captain": false,
       "is_vice_captain": false,
       "element_type": 2,
-      "selling_price": 55,
-      "purchase_price": 55
+      "selling_price": 64,
+      "purchase_price": 62
     },
     {
-      "element": 419,
+      "element": 410,
       "position": 9,
       "multiplier": 0,
       "is_captain": false,
       "is_vice_captain": false,
       "element_type": 1,
-      "selling_price": 46,
-      "purchase_price": 45
+      "selling_price": 185,
+      "purchase_price": 185
     },
     {
-      "element": 94,
+      "element": 541,
       "position": 10,
       "multiplier": 0,
       "is_captain": false,
       "is_vice_captain": false,
       "element_type": 1,
-      "selling_price": 65,
-      "purchase_price": 65
+      "selling_price": 102,
+      "purchase_price": 102
     }
   ],
-  "picks_last_updated": "2025-11-20T01:39:52.206932Z",
+  "picks_last_updated": "2025-12-12T20:45:58.485508Z",
   "chips": [
-    {
-      "id": 1,
-      "status_for_entry": "played",
-      "played_by_entry": [5],
-      "name": "wildcard",
-      "number": 1,
-      "start_event": 2,
-      "stop_event": 40,
-      "chip_type": "transfer",
-      "is_pending": false
-    },
     {
       "id": 4,
       "status_for_entry": "played",
@@ -121,18 +110,29 @@
       "name": "rich",
       "number": 1,
       "start_event": 2,
-      "stop_event": 160,
+      "stop_event": 164,
       "chip_type": "transfer",
       "is_pending": false
     },
     {
-      "id": 9,
+      "id": 2,
+      "status_for_entry": "active",
+      "played_by_entry": [52],
+      "name": "wildcard",
+      "number": 1,
+      "start_event": 41,
+      "stop_event": 108,
+      "chip_type": "transfer",
+      "is_pending": false
+    },
+    {
+      "id": 12,
       "status_for_entry": "played",
-      "played_by_entry": [30],
+      "played_by_entry": [51],
       "name": "phcapt",
       "number": 1,
-      "start_event": 28,
-      "stop_event": 34,
+      "start_event": 48,
+      "stop_event": 54,
       "chip_type": "team",
       "is_pending": false
     }
@@ -141,8 +141,8 @@
     "cost": 1000,
     "status": "cost",
     "limit": 2,
-    "made": 0,
-    "bank": 0,
-    "value": 1013
+    "made": 2,
+    "bank": 8,
+    "value": 1009
   }
 }

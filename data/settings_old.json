@@ -22,8 +22,6 @@
   "gds_to_zero": [],
   "ids_to_zero": [],
   "booked_transfers": [],
-  "weekly_hit_limit": "",
-  "hit_cost": 100,
   "day_solve": false,
   "gw_cap_used": true,
   "use_wc": ["Gameweek 8 - Day 5"],

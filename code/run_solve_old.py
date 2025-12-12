@@ -47,8 +47,6 @@ settings = load_settings()
     gap,
     max_time,
     transfer_penalty,
-    hit_cost,
-    weekly_hit_limit,
     team_data,
     team_id,
     ev_sheet,
@@ -79,8 +77,6 @@ settings = load_settings()
     settings["gap"],
     settings["max_time"],
     settings.get("transfer_penalty", {}),
-    settings.get("hit_cost", 100),
-    settings.get("weekly_hit_limit"),
     settings["team_data"],
     settings["team_id"],
     settings["ev_sheet"],
@@ -145,7 +141,9 @@ def print_transfer_chip_summary(result):
             true_prev_col = curr_col
 
 
-def print_squad_lineups(result, initial_in_bank, initial_transfers_left, hit_cost):
+def print_squad_lineups(
+    result, initial_in_bank, initial_transfers_left, transfer_penalties
+):
     print(f"\n\n======= Squad Lineups for Iteration {result['iter']} =======")
 
     full_player_df = result["full_player_df"]
@@ -165,15 +163,17 @@ def print_squad_lineups(result, initial_in_bank, initial_transfers_left, hit_cos
     true_prev_col = "current"
     total_calculated_xpts = 0.0
 
-    current_itb = initial_in_bank / 10
-    current_loop_week = -1
-    week_ft_remaining = 0
-
     for i in range(1, len(squad_day_cols)):
         curr_col = squad_day_cols[i]
         current_day_str = curr_col.replace("squad_", "")
         a, b = current_day_str.split("_")
-        a_int = int(a)
+        a_int, b_int = int(a), int(b)
+
+        if a_int != current_loop_week:
+            current_loop_week = a_int
+            week_ft_remaining = (
+                initial_transfers_left if a_int == result["current_week"] else 2
+            )
 
         is_as_day = current_day_str in allstar
         is_wc_day = current_day_str in wildcard
@@ -184,8 +184,12 @@ def print_squad_lineups(result, initial_in_bank, initial_transfers_left, hit_cos
         elif is_as_day:
             chip_played_str = " (All-Star)"
 
+        print(f"Gameweek {a} - Day {b}{chip_played_str} : ")
+
         temp_sells = []
         temp_buys = []
+        itb_before_this_day = current_itb
+        itb_before_this_day = itb_before_this_day / 10
         cost_of_sells = 0
         cost_of_buys = 0
 
@@ -198,57 +202,55 @@ def print_squad_lineups(result, initial_in_bank, initial_transfers_left, hit_cos
                     temp_buys.append(f"Buy {row['id']} - {row['name']}")
                     cost_of_buys += row["now_cost"] / 10
 
-        nt_this_day = len(temp_buys)
-
-        is_new_week = a_int != current_loop_week
-
-        if is_new_week:
-            current_loop_week = a_int
-            week_ft_remaining = (
-                initial_transfers_left if a_int == result["current_week"] else 2
-            )
-
-            hits_dict = result.get("hits", {})
-            hits_this_week = hits_dict.get(a_int, 0)
-            pt_this_day = hits_this_week * hit_cost
-        else:
-            pt_this_day = 0
-
-        hit_msg = ""
-        if pt_this_day > 0:
-            hit_msg = f" (Hit: -{pt_this_day})"
-
-        print(f"Gameweek {a} - Day {b}{chip_played_str}{hit_msg} : ")
-
-        itb_before_this_day = current_itb
-
         itb_after_this_day = itb_before_this_day + cost_of_sells - cost_of_buys
+        itb_after_this_day = itb_after_this_day / 10
 
+        nt_this_day = len(temp_buys)
         ft_this_day_str = str(week_ft_remaining)
-
-        if not (is_as_day or is_wc_day):
-            week_ft_remaining = max(0, week_ft_remaining - nt_this_day)
-        else:
-            ft_this_day_str = "∞"
+        pt_this_day = 0
 
         if is_as_day:
+            ft_this_day_str = "∞"
             print(
-                f"\tITB= ∞ -> ∞, FT= {ft_this_day_str}, PT={pt_this_day}, NT={nt_this_day}"
+                f"\tITB={itb_before_this_day:.1f}->{itb_after_this_day:.1f}, FT={ft_this_day_str}, PT=0, NT={nt_this_day}"
             )
+
+        elif is_wc_day:
+            ft_this_day_str = "∞"
+            print(
+                f"\tITB={itb_before_this_day:.1f}->{itb_after_this_day:.1f}, FT={ft_this_day_str}, PT=0, NT={nt_this_day}"
+            )
+
+            if temp_sells:
+                for s in temp_sells:
+                    print(f"\t{s}")
+            if temp_buys:
+                for buy_str in temp_buys:
+                    print(f"\t{buy_str}")
+
+            current_itb = itb_after_this_day
+            true_prev_col = curr_col
+
         else:
+            transfers_to_pay_for = max(0, nt_this_day - week_ft_remaining)
+
+            day_penalty = transfer_penalties.get(str(b_int), 100)
+            pt_this_day = transfers_to_pay_for * day_penalty
+
+            week_ft_remaining = max(0, week_ft_remaining - nt_this_day)
+
             print(
                 f"\tITB={itb_before_this_day:.1f}->{itb_after_this_day:.1f}, FT={ft_this_day_str}, PT={pt_this_day}, NT={nt_this_day}"
             )
 
-        if temp_sells:
-            for s in temp_sells:
-                print(f"\t{s}")
-        if temp_buys:
-            for buy_str in temp_buys:
-                print(f"\t{buy_str}")
+            if temp_sells:
+                for s in temp_sells:
+                    print(f"\t{s}")
+            if temp_buys:
+                for buy_str in temp_buys:
+                    print(f"\t{buy_str}")
 
-        current_itb = itb_after_this_day
-        if not is_as_day:
+            current_itb = itb_after_this_day
             true_prev_col = curr_col
 
         print("Line-up: ")
@@ -291,9 +293,11 @@ def print_squad_lineups(result, initial_in_bank, initial_transfers_left, hit_cos
 
         print("Benched: \n " + "\t" + ", ".join(bench_names))
 
-        final_day_score = day_xPts - pt_this_day
-        print(f"Total xPts: {final_day_score:.2f}\n")
-        total_calculated_xpts += final_day_score
+        print(f"Total xPts: {day_xPts - pt_this_day:.2f}\n")
+        total_calculated_xpts += day_xPts - pt_this_day
+
+        if not is_as_day:
+            true_prev_col = curr_col
 
     print("\n")
     print(f"Total xPts across the horizon: {total_calculated_xpts:.2f}\n")
@@ -317,6 +321,7 @@ def main(
     use_wc,
     use_as,
     booked_transfers,
+    chip_limits,
     num_iterations,
     iteration_criteria,
     iteration_difference,
@@ -324,8 +329,6 @@ def main(
     gap,
     max_time,
     transfer_penalty,
-    hit_cost,
-    weekly_hit_limit,
     ev_sheet,
 ):
     fixture_file_path = DATA_DIR / "fixtures.csv"
@@ -339,13 +342,7 @@ def main(
             fixture_info = clean_fixture_info(fixture_info)
             fixture_info.to_csv("../data/fixtures.csv", index=False)
 
-    in_team, in_team_sell_price, cap_used, transfers_left, in_bank, current_api_gw = (
-        read_team_json()
-    )
-
-    effective_transfers_left = transfers_left
-    if first_gw > current_api_gw:
-        effective_transfers_left = 2
+    in_team, in_team_sell_price, cap_used, transfers_left, in_bank = read_team_json()
 
     if not ev_sheet:
         print("Generating EV")
@@ -439,37 +436,9 @@ def main(
         print("EV generated and output to NBA_EV.csv")
     elif ev_sheet == "mou":
         player_data = pd.read_csv("../data/mou.csv")
-        pt_cols = [c for c in player_data.columns if c.startswith("Gameweek")]
-
-        player_data["ev_across"] = (
-            player_data[pt_cols].replace(0, np.nan).mean(axis=1).fillna(0)
-        )
-
-        player_data["value"] = player_data["ev_across"] / player_data["now_cost"]
-
-        print(f"Players before value cutoff: {len(player_data)}")
-        player_data = player_data[
-            (player_data["value"] >= value_cutoff)
-            | (player_data["id"].isin(in_team))
-            | (player_data["id"].isin(locked))
-        ]
-        print(f"Players after value cutoff: {len(player_data)}")
-
-        player_data = player_data.drop(columns=["ev_across", "value"])
     else:
         print("Loading existing EV sheet")
         player_data = pd.read_csv("../data/NBA_EV.csv")
-
-    if in_team_sell_price:
-        print("\nApplying selling prices...")
-        sell_price_map = {p[0]: p[1] for p in in_team_sell_price}
-
-        def apply_sell_price(row):
-            if row["id"] in sell_price_map:
-                return sell_price_map[row["id"]]
-            return row["now_cost"]
-
-        player_data["now_cost"] = player_data.apply(apply_sell_price, axis=1)
 
     response = nba_solver(
         player_data,
@@ -482,19 +451,16 @@ def main(
         day_solve,
         in_team,
         cap_used,
-        effective_transfers_left,
+        transfers_left,
         in_bank,
         decay,
         gap,
         max_time,
         transfer_penalty,
-        hit_cost,
-        weekly_hit_limit,
         first_gw,
         first_gd,
         final_gw,
         final_gd,
-        current_api_gw,
         iteration=0,
         iteration_criteria=iteration_criteria,
         iteration_difference=iteration_difference,
@@ -522,7 +488,7 @@ def main(
                 print(f"Error saving Excel file: {e}")
 
         if settings.get("print_squads", True):
-            print_squad_lineups(res, in_bank, effective_transfers_left, hit_cost)
+            print_squad_lineups(res, in_bank, transfers_left, transfer_penalty)
 
     if settings.get("print_transfer_chip_summary", True):
         print("\n\n\nTransfer Overview")
@@ -744,24 +710,24 @@ gw_period = [
     {"start_event": 28, "stop_event": 34},
     {"start_event": 35, "stop_event": 40},
     {"start_event": 41, "stop_event": 47},
-    {"start_event": 48, "stop_event": 54},
-    {"start_event": 55, "stop_event": 60},
-    {"start_event": 61, "stop_event": 66},
-    {"start_event": 67, "stop_event": 73},
-    {"start_event": 74, "stop_event": 80},
-    {"start_event": 81, "stop_event": 87},
-    {"start_event": 88, "stop_event": 94},
-    {"start_event": 95, "stop_event": 101},
-    {"start_event": 102, "stop_event": 108},
+    {"start_event": 48, "stop_event": 51},
+    {"start_event": 52, "stop_event": 56},
+    {"start_event": 57, "stop_event": 62},
+    {"start_event": 63, "stop_event": 69},
+    {"start_event": 70, "stop_event": 76},
+    {"start_event": 77, "stop_event": 83},
+    {"start_event": 84, "stop_event": 90},
+    {"start_event": 91, "stop_event": 97},
+    {"start_event": 98, "stop_event": 104},
+    {"start_event": 105, "stop_event": 108},
     {"start_event": 109, "stop_event": 112},
-    {"start_event": 113, "stop_event": 116},
-    {"start_event": 117, "stop_event": 123},
-    {"start_event": 124, "stop_event": 130},
-    {"start_event": 131, "stop_event": 137},
-    {"start_event": 138, "stop_event": 144},
-    {"start_event": 145, "stop_event": 151},
-    {"start_event": 152, "stop_event": 158},
-    {"start_event": 159, "stop_event": 164},
+    {"start_event": 113, "stop_event": 119},
+    {"start_event": 120, "stop_event": 126},
+    {"start_event": 127, "stop_event": 133},
+    {"start_event": 134, "stop_event": 140},
+    {"start_event": 141, "stop_event": 147},
+    {"start_event": 148, "stop_event": 154},
+    {"start_event": 155, "stop_event": 160},
 ]
 
 
@@ -789,8 +755,6 @@ def calculate_fts(transfers, next_gd, as_gds, wc_gds, transfer_periods):
 
 
 def read_team_json():
-    current_gw = first_gw
-
     if team_data == "json":
         with open("../data/team.json") as f:
             d = json.load(f)
@@ -799,111 +763,82 @@ def read_team_json():
                 [pick["element"], pick["selling_price"]] for pick in d["picks"]
             ]
             cap_used = any(
-                chip["name"] == "phcapt" and chip.get("status_for_entry") == "played"
-                for chip in d.get("chips", [])
+                chip["name"] == "phcapt" and chip["status_for_entry"] in ["played"]
+                for chip in d["chips"]
             )
-            transfers_left = max(0, 2 - d["transfers"]["made"])
+            transfers_left = 2 - d["transfers"]["made"]
             in_bank = d["transfers"]["bank"]
-            if "current_event" in d:
-                current_gw = d["current_event"]
-
     elif team_data == "id":
         BASE_URL = "https://nbafantasy.nba.com/api/"
         with requests.Session() as session:
             static_url = f"{BASE_URL}/bootstrap-static/"
             static = session.get(static_url).json()
-
-            next_event = next((x for x in static["events"] if x["is_next"]), None)
-            curr_event = next((x for x in static["events"] if x["is_current"]), None)
-
-            if next_event:
-                next_gd = next_event["id"]
-                current_gw = next_event["id"]
-                picks_gw = next_event["id"] - 1
-            elif curr_event:
-                next_gd = curr_event["id"] + 1
-                current_gw = curr_event["id"]
-                picks_gw = curr_event["id"]
-            else:
-                next_gd = 1
-                current_gw = 1
-                picks_gw = 1
-
-            if picks_gw < 1:
-                picks_gw = 1
-
-            player_db = {
-                x["id"]: {
-                    "now_cost": x["now_cost"],
-                    "start_cost": x["now_cost"] - x["cost_change_start"],
-                    "name": f"{x['first_name']} {x['second_name']}",
-                    "element_type": x["element_type"],
-                }
+            element_to_type_dict = {
+                x["id"]: x["element_type"] for x in static["elements"]
+            }
+            next_gd = next(x for x in static["events"] if x["is_next"])["id"]
+            start_prices = {
+                x["id"]: x["now_cost"] - x["cost_change_start"]
                 for x in static["elements"]
             }
-
-            history_url = f"{BASE_URL}/entry/{team_id}/history/"
-            history_data = session.get(history_url).json()
-            chips_list = history_data.get("chips", [])
-
-            as_gds = [x["event"] for x in chips_list if x["name"] == "rich"]
-            wc_gds = [x["event"] for x in chips_list if x["name"] == "wildcard"]
-
+            gd1_url = f"{BASE_URL}/entry/{team_id}/event/1/picks/"
+            gd1 = session.get(gd1_url).json()
+            if gd1 == {"detail": "Not found."}:
+                gd1_url = f"{BASE_URL}/entry/{team_id}/event/2/picks/"
+                gd1 = session.get(gd1_url).json()
+            else:
+                pass
             transfers_url = f"{BASE_URL}/entry/{team_id}/transfers/"
-            transfers = session.get(transfers_url).json()
-
+            transfers = session.get(transfers_url).json()[::-1]
+            chips_url = f"{BASE_URL}/entry/{team_id}/history/"
+            chips = session.get(chips_url).json()["chips"]
+            as_gds = [x["event"] for x in chips if x["name"] == "rich"]
+            wc_gds = [x["event"] for x in chips if x["name"] == "wildcard"]
+            squad = {x["element"]: start_prices[x["element"]] for x in gd1["picks"]}
+            itb = 1000 - sum(squad.values())
+            for t in transfers:
+                if t["event"] in as_gds:
+                    continue
+                itb += t["element_out_cost"]
+                itb -= t["element_in_cost"]
+                if t["element_in"]:
+                    squad[t["element_in"]] = t["element_in_cost"]
+                if t["element_out"]:
+                    del squad[t["element_out"]]
             fts = calculate_fts(transfers, next_gd, as_gds, wc_gds, gw_period)
-
-            purchase_map = {pid: v["start_cost"] for pid, v in player_db.items()}
-
-            for t in sorted(transfers, key=lambda x: x["time"]):
-                purchase_map[t["element_in"]] = t["element_in_cost"]
-
-            picks_url = f"{BASE_URL}/entry/{team_id}/event/{picks_gw}/picks/"
-            picks_res = session.get(picks_url).json()
-
-            if "detail" in picks_res:
-                picks_url = f"{BASE_URL}/entry/{team_id}/event/{picks_gw - 1}/picks/"
-                picks_res = session.get(picks_url).json()
-
-            current_picks = picks_res["picks"]
-            in_bank = picks_res["entry_history"]["bank"]
-
-            my_data = {"picks": []}
-
-            for p in current_picks:
-                pid = p["element"]
-                p_data = player_db.get(pid, {})
-
-                now_cost = p_data.get("now_cost", 0)
-                pur_price = purchase_map.get(pid, p_data.get("start_cost", 0))
-                etype = p_data.get("element_type", 2)
-
-                if now_cost > pur_price:
-                    profit = now_cost - pur_price
-                    sell_price = pur_price + (profit // 2)
+            made = 2 - fts
+            my_data = {
+                "chips": chips,
+                "picks": [],
+                "team_id": team_id,
+                "transfers": {"bank": itb, "limit": 2, "made": made},
+            }
+            for player_id, purchase_price in squad.items():
+                now_cost = next(x for x in static["elements"] if x["id"] == player_id)[
+                    "now_cost"
+                ]
+                diff = now_cost - purchase_price
+                if diff > 0:
+                    selling_price = purchase_price + diff // 2
                 else:
-                    sell_price = now_cost
-
-                if sell_price > now_cost:
-                    sell_price = now_cost
-
+                    selling_price = now_cost
                 my_data["picks"].append(
-                    {"element": pid, "selling_price": sell_price, "element_type": etype}
+                    {
+                        "element": player_id,
+                        "purchase_price": purchase_price,
+                        "selling_price": selling_price,
+                        "element_type": element_to_type_dict[player_id],
+                    }
                 )
-
         in_team = [pick["element"] for pick in my_data["picks"]]
         in_team_sell_price = [
             [pick["element"], pick["selling_price"]] for pick in my_data["picks"]
         ]
+        cap_used = gw_cap_used
+        transfers_left = 2 - my_data["transfers"]["made"]
+        in_bank = my_data["transfers"]["bank"]
 
-        cap_used = any(chip["name"] == "phcapt" for chip in chips_list)
-        if gw_cap_used:
-            cap_used = True
-
-        transfers_left = fts
-
-    return (in_team, in_team_sell_price, cap_used, transfers_left, in_bank, current_gw)
+    return (in_team, in_team_sell_price, cap_used, transfers_left, in_bank)
 
 
 if __name__ == "__main__":
@@ -925,6 +860,7 @@ if __name__ == "__main__":
         use_wc,
         use_as,
         booked_transfers,
+        chip_limits,
         num_iterations,
         iteration_criteria,
         iteration_difference,
@@ -932,7 +868,5 @@ if __name__ == "__main__":
         gap,
         max_time,
         transfer_penalty,
-        hit_cost,
-        weekly_hit_limit,
         ev_sheet,
     )
