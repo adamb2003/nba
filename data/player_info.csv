@@ -57,7 +57,7 @@ id,name,now_cost,team,element_type,status
 60,Fanbo Zeng,45,3,2,u
 61,Drew Peterson,45,4,1,a
 62,Josh Green,125,4,1,a
-63,Moussa Diabate,65,4,2,i
+63,Moussa Diabate,65,4,2,a
 64,Grant Williams,85,4,2,i
 65,Tre Mann,85,4,1,i
 66,LaMelo Ball,150,4,1,i
@@ -78,22 +78,22 @@ id,name,now_cost,team,element_type,status
 81,Ibou Badji,45,4,2,u
 627,Eric Dixon,45,4,2,u
 82,Nikola Vucevic,140,5,2,a
-83,Coby White,120,5,1,d
+83,Coby White,120,5,1,a
 84,Ayo Dosunmu,95,5,1,i
 85,Patrick Williams,70,5,2,a
 86,Dalen Terry,48,5,1,a
 87,Jevon Carter,44,5,1,a
 88,Julian Phillips,49,5,2,a
-89,Jalen Smith,70,5,2,i
+89,Jalen Smith,70,5,2,a
 90,Josh Giddey,136,5,1,a
 91,Matas Buzelis,74,5,2,a
 92,Emanuel Miller,44,5,2,a
 93,Kevin Huerter,80,5,1,i
-94,Tre Jones,65,5,1,i
+94,Tre Jones,65,5,1,a
 95,Zach Collins,60,5,2,d
 96,Noa Essengue,53,5,2,u
 97,Lachlan Olbrich,44,5,2,a
-98,Isaac Okoro,50,5,1,i
+98,Isaac Okoro,50,5,1,a
 99,Yuki Kawamura,45,5,1,u
 100,Mouhamadou Gueye,45,5,2,u
 248,Trentyn Flowers,45,5,2,a
@@ -237,7 +237,7 @@ id,name,now_cost,team,element_type,status
 229,Pascal Siakam,140,12,2,a
 230,Johnny Furphy,45,12,1,a
 231,Tony Bradley,44,12,2,a
-232,Kam Jones,45,12,1,i
+232,Kam Jones,45,12,1,d
 233,Taelon Peter,43,12,1,a
 234,Jay Huff,84,12,2,a
 235,James Wiseman,50,12,2,u
@@ -474,7 +474,7 @@ id,name,now_cost,team,element_type,status
 453,Paul George,120,23,2,a
 454,Kyle Lowry,64,23,1,a
 455,Joel Embiid,165,23,2,d
-456,Tyrese Maxey,150,23,1,d
+456,Tyrese Maxey,150,23,1,i
 457,Kelly Oubre Jr.,85,23,1,i
 458,Eric Gordon,53,23,1,a
 459,Adem Bona,58,23,2,a
