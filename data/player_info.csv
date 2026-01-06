@@ -40,7 +40,7 @@ id,name,now_cost,team,element_type,status
 38,Jalen Bridges,45,2,2,u
 41,Terance Mann,64,3,1,a
 43,Tyrese Martin,58,3,1,a
-44,Nic Claxton,120,3,2,i
+44,Nic Claxton,120,3,2,a
 45,Cam Thomas,115,3,1,a
 46,Day'Ron Sharpe,79,3,2,a
 47,Noah Clowney,65,3,2,a
@@ -176,7 +176,7 @@ id,name,now_cost,team,element_type,status
 172,Ausar Thompson,100,9,1,a
 173,Ronald Holland II,73,9,2,a
 174,Daniss Jenkins,44,9,1,a
-175,Bobi Klintman,44,9,2,a
+175,Bobi Klintman,44,9,2,d
 176,Tolu Smith,44,9,2,a
 177,Chaz Lanier,44,9,1,a
 178,Duncan Robinson,75,9,2,a
@@ -327,11 +327,11 @@ id,name,now_cost,team,element_type,status
 304,Andrew Wiggins,100,16,2,a
 305,Dru Smith,50,16,1,a
 306,Bam Adebayo,150,16,2,a
-307,Tyler Herro,139,16,1,d
-308,Nikola Jovic,75,16,2,d
-309,Jaime Jaquez Jr.,87,16,2,d
+307,Tyler Herro,139,16,1,a
+308,Nikola Jovic,75,16,2,a
+309,Jaime Jaquez Jr.,87,16,2,i
 310,Terry Rozier,85,16,1,u
-311,Keshad Johnson,44,16,2,d
+311,Keshad Johnson,44,16,2,a
 312,Pelle Larsson,45,16,1,a
 313,Kel'el Ware,84,16,2,a
 314,Davion Mitchell,75,16,1,a
@@ -365,7 +365,7 @@ id,name,now_cost,team,element_type,status
 345,Enrique Freeman,43,18,2,a
 346,Bones Hyland,49,18,1,a
 347,Rudy Gobert,130,18,2,a
-348,Anthony Edwards,166,18,1,a
+348,Anthony Edwards,166,18,1,d
 349,Naz Reid,105,18,2,a
 350,Jaden McDaniels,105,18,2,a
 351,Mike Conley,79,18,1,a
@@ -472,7 +472,7 @@ id,name,now_cost,team,element_type,status
 448,Emoni Bates,45,23,2,u
 449,Malcolm Hill,45,23,2,u
 450,Dominick Barlow,46,23,2,a
-451,Trendon Watford,60,23,2,i
+451,Trendon Watford,60,23,2,d
 452,Andre Drummond,75,23,2,a
 453,Paul George,120,23,2,a
 454,Kyle Lowry,64,23,1,a
