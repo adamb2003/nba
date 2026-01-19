@@ -13,11 +13,11 @@
     "7": 0
   },
   "first_gd": 1,
-  "first_gw": 13,
+  "first_gw": 14,
   "final_gd": 7,
   "final_gw": 15,
   "locked": [],
-  "banned": [579, 572],
+  "banned": [579, 572, 215, 463, 450, 313, 574, 573, 582],
   "gd_banned": [],
   "gds_to_zero": [],
   "ids_to_zero": [],
